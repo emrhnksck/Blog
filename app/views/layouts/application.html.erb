@@ -31,8 +31,16 @@
         <li><a href="https://github.com/emrhnksck">github</a></li>
         <li><a href="mailto:oyun-icin000000@hotmail.com?subject=feedback">email me</a></li>
       </ul>
+
+      <% if !user_signed_in? %>
       <p class="sign_in">Admin Login</p>
+      <% end %>
     </div>
+
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
 
     <div id="main_content">
       <div id="header">
@@ -43,10 +51,14 @@
         <% else %>
           <%= link_to "Back to Posts" , root_path %>
         <% end %>
+
+
+        <% if user_signed_in? %>
         <div class="buttons">
             <button class=""><%= link_to "New Post", new_post_path %> </button>
             <button class="">Log Out</button>
         </div>
+        <% end %>
       </div>
 
       <% flash.each do |name,msg| %>
