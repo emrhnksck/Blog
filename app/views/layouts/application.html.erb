@@ -6,11 +6,49 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+      <%= stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Raleway:400,700' %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <div id="sidebar">
+      <div id="logo">
+        <%= link_to root_path do %>
+          <%= image_tag "logo.svg" %>
+        <% end %>
+      </div>
+      <ul>
+        <li class="category">Website</li>
+        <li> <%= link_to "Blog", root_path %> </li>
+        <li>About</li>
+      </ul>
+
+      <ul>
+        <li class="category">Social</li>
+        <li><a href="http://twitter.com/emrhnksck">Twitter</a></li>
+        <li><a href="https://instagram.com/emrhnksck">instagram</a></li>
+        <li><a href="https://github.com/emrhnksck">github</a></li>
+        <li><a href="mailto:oyun-icin000000@hotmail.com?subject=feedback">email me</a></li>
+      </ul>
+      <p class="sign_in">Admin Login</p>
+    </div>
+
+    <div id="main_content">
+      <div id="header">
+        <p>All Posts</p>
+
+        <div class="buttons">
+            <button class=""><%= link_to "New Post", new_post_path %> </button>
+            <button class="">Log Out</button>
+        </div>
+      </div>
+
+      <% flash.each do |name,msg| %>
+        <%= content_tag(:div, msg, class:"alert") %>
+      <% end %>
+      <%= yield %>
+    </div>
+
   </body>
 </html>
